@@ -1,7 +1,16 @@
-Afin d’élargir le spectre des fonctionnalités possibles du projet "Saisie intuitive", un fichier texte brut vous est fourni.Ce fichier, intitulé "mots _courants.txt" contient l'ensemble de mots provenant des fichiers SMS fournis.
+Hello !
 
-Avant d'être exploitable, il doit être pré-traité et converti dans un format qui répond aux besoins de votre application, e.g. :
+Please find source codes into /src.
 
-- associer un nombre d’occurrences à chaque mot distinct figurant dans le fichier "mots _courants.txt" ;
+Our app compile by typing 
+```
+make exe
+```
+Our app offers different functions :
+    - predict a word from a string
+    - add and delete a word from prediction dictionnary
+    - auto-update the usage of words in the prediction dictionnary
+    - allows the user to add words that are not in the french dictionnary ( as acronyms ) 
 
-- associer la date de la dernière utilisation.  
+in the terminal. 
+
