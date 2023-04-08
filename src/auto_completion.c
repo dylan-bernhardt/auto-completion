@@ -137,18 +137,17 @@ int size_of_list(List *list)
 
 void propose_words_to_add(Root *root, List *list, List *ht[HASH_SIZE], char *string, int number)
 {
-    create_hash_table_from_file(ht, "../txt/dictionnaire.txt", strlen(string));
+    
     unsigned long key = hash_function(string, strlen(string));
     Word *word1 = ht[key]->head;
     bool flag ;
     printf("\n\t\tI need to complete the dico...and add %d words ...\n", number-size_of_list(list));
     int word_found =0, word_proposed=0, time_to_wait=3000000;
-    while(word_found!=number-size_of_list(list) && word_proposed<size_of_list(ht[key]))
+    printf("%d", size_of_list(ht[key]));
+    while(word_found!=number-size_of_list(list) && word_proposed<=number-size_of_list(list))
     {
-        
         flag = true;
         int same = 0;
-        word_proposed++;
         for(int k=0; k<strlen(string); k++)
         {
             if(word1->word[k]==string[k]) same++;         
@@ -175,6 +174,7 @@ void propose_words_to_add(Root *root, List *list, List *ht[HASH_SIZE], char *str
     "######################################################################", stdout);
                 puts("\n\n");
                 fputs("\t\t", stdout);
+                word_proposed++;
                 printf("\n\t\tDo you want to add %s\n\n\t\t[ 0 ] . No\n\n\t\t[ 1 ] . Yes\n", word1->word);
                 int choice;
                 scanf("%d",&choice);
@@ -188,7 +188,7 @@ void propose_words_to_add(Root *root, List *list, List *ht[HASH_SIZE], char *str
                 
             }
         }
-
+        
         word1 = word1->next;
     }
 
