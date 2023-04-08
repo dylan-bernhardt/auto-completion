@@ -93,7 +93,7 @@ void hook_word(Root root, char *word)
         the word the users wants to add to the tree
     */
     Node *cur = root.branches[key(word[0])];
-    for(int i=1; i<strlen(word); i++)
+    for(int i=1; i<(int)strlen(word); i++)
     {
         add_letter_to_node(cur, word[i]);
         cur = cur->branches[key(word[i])];

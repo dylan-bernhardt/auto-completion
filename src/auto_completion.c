@@ -39,7 +39,6 @@ bool print_most_used(int number, List *list)
                 }
                 cur=cur->next;
             }
-            Word *x=list->head;
             printf("[ %d ] . %s\t\t---%d\n",i+1, most_used_word->word, most_used_word->nb_of_use);
             printf("\t\t");
             most_used_word->nb_of_use=j;
@@ -89,12 +88,12 @@ void print_words_from_string(Root* root, char *string, int number, List *ht[HASH
         node = node->branches[key(string[k])];
         k++;
     }
-    if(k>=strlen(string))   extract_words_from_node(&list, node);
+    if(k>=(int)strlen(string))   extract_words_from_node(&list, node);
 
     Word *cur = list.head;
     
     bool enough = print_most_used(number, &list);
-    if(enough && k>=strlen(string))
+    if(enough && k>=(int)strlen(string))
     {
         int choice;
         printf("\n\n\t\tWhich one do you want to choose ?\n\t\t");
@@ -111,7 +110,7 @@ void print_words_from_string(Root* root, char *string, int number, List *ht[HASH
         printf("\n\n\t\tYou chose : %s\n\n", cur->word);
         usleep(2000000);
         node = root->branches[key(cur->word[0])];
-        for(int i =1; i<strlen(cur->word); i++) node=node->branches[key(cur->word[i])];
+        for(int i =1; i<(int)strlen(cur->word); i++) node=node->branches[key(cur->word[i])];
         node->nb_of_use++;
     }
     else
@@ -148,11 +147,11 @@ void propose_words_to_add(Root *root, List *list, List *ht[HASH_SIZE], char *str
     {
         flag = true;
         same = 0;
-        for(int k=0; k<strlen(string); k++)
+        for(int k=0; k<(int)strlen(string); k++)
         {
             if(word1->word[k]==string[k]) same++;         
         }
-        if(same == strlen(string))
+        if(same == (int)strlen(string))
         {
             word2 = list->head;
             
@@ -170,7 +169,6 @@ void propose_words_to_add(Root *root, List *list, List *ht[HASH_SIZE], char *str
                 puts("\n\n");
                 fputs("\t\t", stdout);
                 printf("\n\t\tDo you want to add %s\n\n\t\t[ 0 ] . No\n\n\t\t[ 1 ] . Yes\n", word1->word);
-                choice;
                 scanf("%d",&choice);
                 if(choice)
                 {

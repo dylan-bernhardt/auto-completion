@@ -6,7 +6,7 @@
 #include"menu.h"
 #include"dico.h"
 
-void main(void)
+int main(void)
 {
     // Root root;
     // init_tree(&root);
@@ -29,7 +29,7 @@ void main(void)
     // create_hash_table_from_file(ht, "../txt/dictionnaire.txt", 5);
     // print_table(ht);
     my_app();
-    
+    return 0;
     
     
 }

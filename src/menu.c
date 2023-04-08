@@ -73,7 +73,7 @@ void my_app()
     char _string[50];
     Root root;
     init_tree(&root);
-    branch_words_from_a_file(root, "../txt/mots_courants.txt");
+    branch_words_from_a_file(root, "./txt/mots_courants.txt");
     List *ht[HASH_SIZE];
     init_table(ht);
     bool quit = false;
@@ -87,7 +87,7 @@ void my_app()
                 delayed_print("Please type :", 30);
                 fputs("\n\n\t\t",stdout);
                 scanf("%s", _string);
-                create_hash_table_from_file(ht, "../txt/dictionnaire.txt", strlen(_string));
+                create_hash_table_from_file(ht, "./txt/dictionnaire.txt", strlen(_string));
                 clear();
                 fputs("Words found :\n\n\t\t", stdout);
                 print_words_from_string(&root, _string, 3, ht);
@@ -100,7 +100,7 @@ void my_app()
                 fputs("\n\n\t\t",stdout);
                 scanf("%s", _string);
                 clear();
-                create_hash_table_from_file(ht, "../txt/dictionnaire.txt", 10);
+                create_hash_table_from_file(ht, "./txt/dictionnaire.txt", 10);
                 if(is_in_tree(&root,_string)) 
                     {
                         delayed_print("The word is already in the dictionnary", 30);
@@ -151,7 +151,7 @@ void my_app()
                 }
                 else
                 {
-                    delayed_print("The word is not in the disctonnary...",30);
+                    delayed_print("The word is not in the dictionnary...",30);
                     delay(2000);
                 }
                 clear();
