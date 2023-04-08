@@ -84,17 +84,17 @@ void print_words_from_string(Root* root, char *string, int number, List *ht[HASH
     List list;
     list.head = NULL;
     int k =1;
-    while(string[k]) 
+    while(string[k] && node->branches[key(string[k])]) 
     {
         node = node->branches[key(string[k])];
         k++;
     }
-    extract_words_from_node(&list, node);
+    if(k>=strlen(string))   extract_words_from_node(&list, node);
 
     Word *cur = list.head;
     
     bool enough = print_most_used(number, &list);
-    if(enough)
+    if(enough && k>=strlen(string))
     {
         int choice;
         printf("\n\n\t\tWhich one do you want to choose ?\n\t\t");
@@ -144,10 +144,8 @@ void propose_words_to_add(Root *root, List *list, List *ht[HASH_SIZE], char *str
     printf("\n\t\tI need to complete the dico...and add %d words ...\n", number-size_of_list(list));
     usleep(3000000);
     int word_found =0,same, choice;
-    printf("%d", size_of_list(ht[key]));
     while(word1 && word_found!=number-size_of_list(list))
     {
-
         flag = true;
         same = 0;
         for(int k=0; k<strlen(string); k++)
