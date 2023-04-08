@@ -13,7 +13,7 @@ all :
 	$(GCC) -c $< -Iinclude
 
 exe : main.o tree.o auto_completion.o menu.o dico.o
-	gcc main.o tree.o auto_completion.o menu.o dico.o -o exe
+	$(GCC) main.o tree.o auto_completion.o menu.o dico.o -o exe
 	mv $^ ./obj
 
 clean :
