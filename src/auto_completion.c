@@ -139,44 +139,40 @@ void propose_words_to_add(Root *root, List *list, List *ht[HASH_SIZE], char *str
 {
     
     unsigned long key = hash_function(string, strlen(string));
-    Word *word1 = ht[key]->head;
+    Word *word1 = ht[key]->head, *word2;
     bool flag ;
     printf("\n\t\tI need to complete the dico...and add %d words ...\n", number-size_of_list(list));
-    int word_found =0, word_proposed=0, time_to_wait=3000000;
+    usleep(3000000);
+    int word_found =0,same, choice;
     printf("%d", size_of_list(ht[key]));
-    while(word_found!=number-size_of_list(list) && word_proposed<=number-size_of_list(list))
+    while(word1 && word_found!=number-size_of_list(list))
     {
+
         flag = true;
-        int same = 0;
+        same = 0;
         for(int k=0; k<strlen(string); k++)
         {
             if(word1->word[k]==string[k]) same++;         
         }
         if(same == strlen(string))
         {
-            Word *word2 = list->head;
+            word2 = list->head;
             
             while(word2)
             {
                 if(strcmp(word2->word, word1->word)==0) flag = false;
-                else 
-                {
-                    word2 = word2->next;
-                }
+                word2 = word2->next;
             }
             if(flag) 
             {
-                usleep(time_to_wait);
-                time_to_wait=0;
                 system("clear");
                 fputs("######################################################################\n"
     "           Algo Prog Project\n"
     "######################################################################", stdout);
                 puts("\n\n");
                 fputs("\t\t", stdout);
-                word_proposed++;
                 printf("\n\t\tDo you want to add %s\n\n\t\t[ 0 ] . No\n\n\t\t[ 1 ] . Yes\n", word1->word);
-                int choice;
+                choice;
                 scanf("%d",&choice);
                 if(choice)
                 {
@@ -186,9 +182,9 @@ void propose_words_to_add(Root *root, List *list, List *ht[HASH_SIZE], char *str
 
                 }
                 
-            }
+           }
         }
-        
+
         word1 = word1->next;
     }
 
