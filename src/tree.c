@@ -6,13 +6,6 @@
 
 void init_tree(Root *root)
 {
-    /*
-    inits a tree
-
-    @parameters
-    root : Root *
-        the root of the tree the user wants to init
-    */
     char *alphabet = "abcdefghijklmnopqrstuvwxyz";
     for(int i =0; i<26; i++)
     {
@@ -25,15 +18,6 @@ void init_tree(Root *root)
 
 void init_node(Node *node, char letter)
 {
-    /*
-    inits a node from a letter
-
-    @parameters
-    node : Node *
-        the node the user wants to init
-    letter : char
-        the letter that will correspond to the node
-    */
     node->letter = letter;
     node->nb_of_use=0;
     for(int i=0; i<26; i++)
@@ -46,31 +30,12 @@ void init_node(Node *node, char letter)
 
 int key(char letter)
 {
-    /*
-    generates a specific key for each letter of the alphabet
-
-    @parameters
-    letter : char
-        the letter 
-
-    @return
-        the key associated to the letter
-    */
     int i = letter;
     return i%26;
 }
 
 void add_letter_to_node(Node *node, char letter)
 {
-    /*
-    branches a new node on an existing node
-
-    @parameters
-    node : Node *
-        the existing node
-    letter : char
-        the letter that correspond to the future node
-    */
     if(!(node->branches[key(letter)]))
     {
         Node *new_node = malloc(sizeof(Node));
@@ -83,15 +48,6 @@ void add_letter_to_node(Node *node, char letter)
 
 void hook_word(Root root, char *word)
 {
-    /*
-    adds a word to an exisiting tree
-
-    @parameters
-    root : Root
-        the root of the tree
-    word : string
-        the word the users wants to add to the tree
-    */
     Node *cur = root.branches[key(word[0])];
     for(int i=1; i<(int)strlen(word); i++)
     {
@@ -104,15 +60,6 @@ void hook_word(Root root, char *word)
 
 void branch_words_from_a_file(Root root, char *file_path)
 {
-    /*
-    from a file that contains words, fills the trees with these
-
-    @parameters
-    root : Root
-        the root of the tree the user wants to fill
-    file_path : string
-        the path of the file to read
-    */
     FILE *f = fopen(file_path,"r");
     char line[20];
     while(fscanf(f, "%s", line)==1)
@@ -124,9 +71,6 @@ void branch_words_from_a_file(Root root, char *file_path)
 
 void browse_tree(Root *root)
 {   
-    /*
-    prints all the words included in a tree, by browsing it until the last leaf, and then going back up 
-    */
     for(int i=0; i<26; i++)
     {
         browse_subtree(root->branches[i]);
@@ -136,9 +80,6 @@ void browse_tree(Root *root)
 
 void browse_subtree(Node *node)
 {
-    /*
-    prints all the words included in a subtree, by browsing it until the last leaf, and then going back up 
-    */
     if(node->nb_of_use!=0) printf("%s---%d\n", node->word, node->nb_of_use);
     if(!node)
     {
@@ -157,9 +98,6 @@ void browse_subtree(Node *node)
 
 bool is_in_tree(Root *root, char *string)
 {
-    /*
-    returns the presence of a word in the tree, as a boolean  
-    */
     bool flag = false;
     Node *node = root->branches[key(string[0])];
     for(int i=1; string[i]&&node;i++) node=node->branches[key(string[i])];

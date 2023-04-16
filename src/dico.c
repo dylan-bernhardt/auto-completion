@@ -7,9 +7,6 @@
 
 unsigned long hash_function(char *string, int nb_letter_to_consider)
 {
-	/*
-    calculates the key of a word, based on the sum of the letters of the string
-    */
 	int sum=0;
 	for(int i=0;string[i] && i<nb_letter_to_consider;i++)
 	{
@@ -20,9 +17,6 @@ unsigned long hash_function(char *string, int nb_letter_to_consider)
 
 void create_hash_table_from_file(List *ht[HASH_SIZE], char *file_name, int nb_letter_to_consider)
 {
-	/*
-    fills a hash table based on the words in the .txt
-    */
 	FILE *file=fopen(file_name,"r");
 	if(file)
 	{
@@ -40,9 +34,6 @@ void create_hash_table_from_file(List *ht[HASH_SIZE], char *file_name, int nb_le
 
 void print_table(List *ht[HASH_SIZE])
 {
-	/*
-    prints the hash table, the words are grouped by the same start of string 
-    */
 	Word *word;
 	for(unsigned long i=0;i<HASH_SIZE;i++)
 	{
@@ -58,18 +49,12 @@ void print_table(List *ht[HASH_SIZE])
 
 void add_word(List *list, Word *word)
 {
-	/*
-    adds a word in the chained list of the hash table
-    */
 	word->next=list->head;
 	list->head=word;
 }
 
 bool is_in_table(List *ht[HASH_SIZE], char *string, int nb_letter_to_consider)
 {
-	/*
-    returns the presence of a word in the hash table as a bolean
-    */
 	unsigned long code=hash_function(string,nb_letter_to_consider);
 
 	Word *word;
@@ -90,9 +75,6 @@ bool is_in_table(List *ht[HASH_SIZE], char *string, int nb_letter_to_consider)
 
 void free_table(List *ht[HASH_SIZE])
 {
-	/*
-    frees the hash table from the data, ans allows the filling of it with a new key
-    */
 	for(unsigned long i =0; i<HASH_SIZE; i++)
 	{
 		while(ht[i]->head)
@@ -107,9 +89,6 @@ void free_table(List *ht[HASH_SIZE])
 
 void delete_element(List * list)
 {
-	/*
-    deletes all the words of a chained list
-    */
 	Word *word = list->head;
 	if(word)
 	{
@@ -122,9 +101,6 @@ void delete_element(List * list)
 
 void init_table(List *ht[HASH_SIZE])
 {
-	/*
-    inits an hash table empty
-    */
 	for(unsigned long i=0;i<HASH_SIZE;i++)			
 		{
 			List *list=(List *)malloc(sizeof(List));

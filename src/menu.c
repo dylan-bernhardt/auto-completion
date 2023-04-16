@@ -9,9 +9,6 @@
 
 void start()
 {
-    /*
-    prints a message at the start of the application
-    */
     clear();
     delayed_print("Welcome to our app !\n\n", 50);
     fputs("            ",stdout);
@@ -23,9 +20,6 @@ void start()
 
 void delayed_print(char *string, int ms)
 {
-    /*
-    print the string in argument with a delay for each caracter
-    */
     int k =0;
     while(string[k])
     {
@@ -38,17 +32,11 @@ void delayed_print(char *string, int ms)
 
 int delay(int milliseconds)
 {
-    /*
-    inits the delay of printing
-    */
     return usleep(milliseconds*1000);
 }
 
 void clear()
 {
-    /*
-    prints the head of the application
-    */
     system("clear");
     fputs("######################################################################\n"
     "           Algo Prog Project\n"
@@ -60,17 +48,14 @@ void clear()
 
 int choices(int ms)
 {
-    /*
-    prints all the choices the user has 
-    */
     fputs("\t\t", stdout);
     delayed_print("And then...", ms);
     fputs("\n\n\t\t", stdout);
     delayed_print("1. Test our auto-completion program...", ms);
     fputs("\n\n\t\t", stdout);
-    delayed_print("2. Add a word to the prediction dictionnary...", ms);
+    delayed_print("2. Add a word to the prediction dictionary...", ms);
     fputs("\n\n\t\t", stdout);
-    delayed_print("3. Remove a word from the prediction dictionnary...", ms);
+    delayed_print("3. Remove a word from the prediction dictionary...", ms);
     fputs("\n\n\t\t", stdout);
     delayed_print("4. You are done and you want to quit...", ms);
     fputs("\n\n\t\t", stdout);
@@ -84,9 +69,6 @@ int choices(int ms)
 
 void my_app()
 {
-    /*
-    while he doesn't want to quit, the user can use the application
-    */
     start();
     char _string[50];
     Root root;
@@ -121,7 +103,7 @@ void my_app()
                 create_hash_table_from_file(ht, "./txt/dictionnaire.txt", 10);
                 if(is_in_tree(&root,_string)) 
                     {
-                        delayed_print("The word is already in the dictionnary", 30);
+                        delayed_print("The word is already in the dictionary", 30);
                         delay(2000);
                     }
                 else
@@ -135,7 +117,7 @@ void my_app()
                     }
                     else
                     {
-                        delayed_print("The word is not in the french dictionnary, are you sure that you want to add it ?\n\n",30);
+                        delayed_print("The word is not in the french dictionary, are you sure that you want to add it ?\n\n",30);
                         delayed_print("\n\n\t\t[ 1 ]. Yes\n\t\t[ 2 ]. No\n",30);
                         int choice;
                         scanf("%d",&choice);;
@@ -164,12 +146,12 @@ void my_app()
                     Node *node = root.branches[key(_string[0])];
                     for(int i=1; _string[i]; i++) node=node->branches[key(_string[i])];
                     node->nb_of_use=0;
-                    delayed_print("The word has been delete with success", 30);
+                    delayed_print("The word has been deleted with success", 30);
                     delay(2000);
                 }
                 else
                 {
-                    delayed_print("The word is not in the dictionnary...",30);
+                    delayed_print("The word is not in the dictionary...",30);
                     delay(2000);
                 }
                 clear();

@@ -40,10 +40,41 @@ typedef struct List List;
 #define HASH_SIZE 3000
 
 void create_hash_table_from_file(List *ht[HASH_SIZE], char *file_name, int nb_letter_to_consider);
+    /*
+    fills a hash table based on the words in the .txt
+    */
+
 void add_word(List *list, Word *word);
+    /*
+    adds a word in the chained list of the hash table
+    */
+
 unsigned long hash_function(char *string, int nb_letter_to_consider);
+    /*
+    calculates the key of a word, based on the sum of the letters of the string
+    */
+
 void print_table(List *ht[HASH_SIZE]);
+    /*
+    prints the hash table, the words are grouped by the same start of string 
+    */
+
 bool is_in_table(List *ht[HASH_SIZE], char *string, int nb_letter_to_consider);
+    /*
+    returns the presence of a word in the hash table as a bolean
+    */
+
 void free_table(List *ht[HASH_SIZE]);
+    /*
+    frees the hash table from the data, ans allows the filling of it with a new key
+    */
+
 void delete_element(List * list);
+    /*
+    deletes all the words of a chained list
+    */
+
 void init_table(List *ht[HASH_SIZE]);
+    /*
+    inits an empty hash table
+    */
