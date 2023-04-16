@@ -9,6 +9,9 @@
 
 void start()
 {
+    /*
+    prints a message at the start of the application
+    */
     clear();
     delayed_print("Welcome to our app !\n\n", 50);
     fputs("            ",stdout);
@@ -20,6 +23,9 @@ void start()
 
 void delayed_print(char *string, int ms)
 {
+    /*
+    print the string in argument with a delay for each caracter
+    */
     int k =0;
     while(string[k])
     {
@@ -32,11 +38,17 @@ void delayed_print(char *string, int ms)
 
 int delay(int milliseconds)
 {
+    /*
+    inits the delay of printing
+    */
     return usleep(milliseconds*1000);
 }
 
 void clear()
 {
+    /*
+    prints the head of the application
+    */
     system("clear");
     fputs("######################################################################\n"
     "           Algo Prog Project\n"
@@ -48,6 +60,9 @@ void clear()
 
 int choices(int ms)
 {
+    /*
+    prints all the choices the user has 
+    */
     fputs("\t\t", stdout);
     delayed_print("And then...", ms);
     fputs("\n\n\t\t", stdout);
@@ -69,6 +84,9 @@ int choices(int ms)
 
 void my_app()
 {
+    /*
+    while he doesn't want to quit, the user can use the application
+    */
     start();
     char _string[50];
     Root root;

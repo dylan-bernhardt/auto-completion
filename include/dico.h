@@ -6,6 +6,15 @@
 #define struct_def 
 
 struct Word{
+        /*
+    structure that corresponds to a word in the prediction dictionary
+    
+    @objects
+    word : string
+        the word included in the dictionary
+    nb_of_use : int
+        1 if the word has been used one time, 2 if 2... , 0 if not
+    */
     char word[20];
     int nb_of_use;
     struct Word* next;
@@ -15,6 +24,13 @@ typedef struct Word Word;
 
 
 struct List{
+            /*
+    structure that corresponds to the head of a chained list in the hash table
+    
+    @objects
+    head : pointer to a word
+        contains the adress of the word in the chained list 
+    */
     Word *head;
 };
 typedef struct List List;

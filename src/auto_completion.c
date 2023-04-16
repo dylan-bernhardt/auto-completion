@@ -10,6 +10,10 @@
 
 bool print_most_used(int number, List *list)
 {
+    /*
+    prints a number of words that start with the same string as informed, in the most used order. 
+    If there are too many words in the tree, only the most frequently used are wroten down by the application. Else, all the words available are wroten down. 
+    */
     Word *cur = list->head;
     int size = size_of_list(list), k=0;
     if(number > size)
@@ -53,6 +57,10 @@ bool print_most_used(int number, List *list)
 
 void extract_words_from_node(List *list, Node *node)
 {
+    /*
+    returns all the words available from a leaf in the tree. 
+    The tree is browsed in all directions to find all the words. 
+    */
     if(node->nb_of_use!=0) 
     {
         Word *word = malloc(sizeof(Word));
@@ -78,6 +86,11 @@ void extract_words_from_node(List *list, Node *node)
 
 void print_words_from_string(Root* root, char *string, int number, List *ht[HASH_SIZE])
 {
+    /*
+    prints all the words that start with the same string as informed. The first words printed are taken from the prediction dictionary. 
+    If not enough words are found, the application will look for more words in the french dictionary. 
+    Until enough words are confirmed by the user, or if there are no more words in the french dictionary, the application will suggest new words. 
+    */
     Node * node;
     node = root->branches[key((string[0]))];
     List list;
@@ -122,6 +135,9 @@ void print_words_from_string(Root* root, char *string, int number, List *ht[HASH
 
 int size_of_list(List *list)
 {
+    /*
+    returns the number of words which start with the same string 
+    */
     Word *word = list->head;
     int k=0;
     while(word) 
@@ -136,7 +152,10 @@ int size_of_list(List *list)
 
 void propose_words_to_add(Root *root, List *list, List *ht[HASH_SIZE], char *string, int number)
 {
-    
+    /*
+    prints all the words left in the french dictionary that start with the same string as informed, but which are not in the prediction dictionary.
+    The user can choose or not to add the words suggested by the application
+    */
     unsigned long key = hash_function(string, strlen(string));
     Word *word1 = ht[key]->head, *word2;
     bool flag ;

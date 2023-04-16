@@ -123,7 +123,10 @@ void branch_words_from_a_file(Root root, char *file_path)
 }
 
 void browse_tree(Root *root)
-{
+{   
+    /*
+    prints all the words included in a tree, by browsing it until the last leaf, and then going back up 
+    */
     for(int i=0; i<26; i++)
     {
         browse_subtree(root->branches[i]);
@@ -133,6 +136,9 @@ void browse_tree(Root *root)
 
 void browse_subtree(Node *node)
 {
+    /*
+    prints all the words included in a subtree, by browsing it until the last leaf, and then going back up 
+    */
     if(node->nb_of_use!=0) printf("%s---%d\n", node->word, node->nb_of_use);
     if(!node)
     {
@@ -151,6 +157,9 @@ void browse_subtree(Node *node)
 
 bool is_in_tree(Root *root, char *string)
 {
+    /*
+    returns the presence of a word in the tree, as a boolean  
+    */
     bool flag = false;
     Node *node = root->branches[key(string[0])];
     for(int i=1; string[i]&&node;i++) node=node->branches[key(string[i])];
