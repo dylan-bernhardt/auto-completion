@@ -14,3 +14,4 @@ Our app offers different functions :
 
 in the terminal. 
 
+by Coco & Dylan
